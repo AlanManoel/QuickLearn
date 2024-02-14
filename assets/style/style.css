@@ -24,6 +24,10 @@ header {
 
 main {
     margin-top: 75px;
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    flex-wrap: wrap;
 }
 
 .card {
@@ -43,4 +47,8 @@ main {
 .card p {
     color: #FFF;
     font-size: 2.25rem;
+}
+
+.card img{
+    height: 48px;
 }
