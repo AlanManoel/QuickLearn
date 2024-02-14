@@ -68,27 +68,6 @@ function desenhaQuadrado(posicaoX, posicaoY, textoEsquerda) {
     contextoCanva.stroke();
 }
 
-function animarQuadrado(posicaoX, posicaoY, textoEsquerda, posicaoFinalY) {
-    let quadroAtual = 0;
-    const quadrosTotais = 100;
-    const incrementoY = (posicaoFinalY - posicaoY) / quadrosTotais;
-
-    function animacao() {
-        quadroAtual++;
-
-        contexto.clearRect(0, 0, canvas.width, canvas.height);
-
-        const novaPosicaoY = posicaoY + quadroAtual * incrementoY;
-        desenhaQuadrado(posicaoX, novaPosicaoY, textoEsquerda);
-
-        if (quadroAtual < quadrosTotais) {
-            requestAnimationFrame(animacao);
-        }
-    }
-
-    animacao();
-}
-
 function desenharSeta(posicaoX, posicaoY, comprimento) {
     const larguraSeta = 8;
     contextoCanva.beginPath();
