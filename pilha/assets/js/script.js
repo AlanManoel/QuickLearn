@@ -196,8 +196,8 @@ formPilha.addEventListener("click", function (event) {
 
         if (pilha.tamanho >= 8) {
             alert("Pilha Cheia")
-        } else if (valor > 999) {
-            alert("Apenas numeros menores que 1000.");
+        } else if (valor > 999 || valor <= 0) {
+            alert("Apenas numeros maiores que 0 e menores que 1000.");
         } else if (valor !== "") {
             pilha.adicionarDesenho(valor);
         }

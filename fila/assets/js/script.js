@@ -162,8 +162,8 @@ formFila.addEventListener("click", (event) => {
     if (event.target === btnAdd) {
         if (fila.tamanho >= 12) {
             alert("Fila cheia");
-        } else if (valorAdd > 999) {
-            alert("Apenas numeros menores que 1000.");
+        } else if (valorAdd > 999 || valorAdd <= 0) {
+            alert("Apenas numeros maiores que 0 e menores que 1000.");
         } else if (valorAdd !== "") {
             fila.adicionarDesenho(valorAdd);
         }
