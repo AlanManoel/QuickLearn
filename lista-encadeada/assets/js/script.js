@@ -9,7 +9,7 @@ const corAmarelo = "#C09F28";
 const canvas = document.querySelector("#canvas");
 const contextoCanva = canvas.getContext('2d');
 
-function desenhaQuadrado(posicaoX, posicaoY, textoEsquerda) {
+function desenhaQuadrado(posicaoX, posicaoY, textoEsquerda, posicao) {
     const larguraRetangulo = 80;
     const alturaRetangulo = 40;
 
@@ -36,11 +36,12 @@ function desenhaQuadrado(posicaoX, posicaoY, textoEsquerda) {
     contextoCanva.fillStyle = "white";
     contextoCanva.textBaseline = "middle";
 
-    //Lado esquerdo
     const xA = meioX - 30;
     contextoCanva.fillText("Valor", xA - 5, 20);
     contextoCanva.fillText("Prox.", xA + 35, 20);
-
+    contextoCanva.fillText(`Posição: ${posicao}`, xA , 85);
+    
+    //Lado esquerdo
     contextoCanva.font = "16px Arial";
     if (textoEsquerda < 10) {
         contextoCanva.fillText(textoEsquerda, xA + 5, meioY + 2);
@@ -75,23 +76,26 @@ function desenharSeta(posicaoX, posicaoY, comprimento) {
     contextoCanva.lineWidth = 2;
     contextoCanva.stroke();
 }
+
 function redesenharLista(lista) {
     contextoCanva.clearRect(0, 0, canvas.width, canvas.height);
     let ponteiro = lista;
     let posX = 10;
+    let posicaoNumero = 0
 
     if (this.tamanho === 1) {
-        desenhaQuadrado(posX, 30, ponteiro.valor);
+        desenhaQuadrado(posX, 30, ponteiro.valor, posicaoNumero);
         posX += 110;
         ponteiro = ponteiro.proximo;
     } else {
         while (ponteiro) {
-            desenhaQuadrado(posX, 30, ponteiro.valor);
+            desenhaQuadrado(posX, 30, ponteiro.valor, posicaoNumero);
             posX += 110;
             if (ponteiro.proximo) {
                 desenharSeta(posX - 50, 50, 48);
             }
             ponteiro = ponteiro.proximo;
+            posicaoNumero ++;
         }
     }
 }
@@ -217,7 +221,6 @@ formLista.addEventListener("click", (event) => {
         } else if (valorAdd !== "") {
             lista.adicionarDesenho(valorAdd);
         }
-
         inputValor.value = "";
         inputValor.focus();
     }
