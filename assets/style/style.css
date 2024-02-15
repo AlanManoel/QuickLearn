@@ -31,8 +31,8 @@ main {
 }
 
 .card {
-    height: 194px;
-    width: 194px;
+    height: 190px;
+    width: 220px;
     border-radius: 20px;
     background-color: var(--body-color);
     box-shadow: -4px -4px 8px 0 rgb(255, 255, 255, 14%);
@@ -46,7 +46,9 @@ main {
 
 .card p {
     color: #FFF;
-    font-size: 2.25rem;
+    text-align: center;
+    font-size: 1.75rem;
+    line-height: 32px;
 }
 
 .card img{
