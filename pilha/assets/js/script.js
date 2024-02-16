@@ -17,9 +17,9 @@ let tamanhoMaximoPilha;
 if (alturaTela <= 768) {
     tamanhoMaximoPilha = 8;
 } else if (alturaTela <= 900) {
-    tamanhoMaximoPilha = 14;
+    tamanhoMaximoPilha = 11;
 } else if (alturaTela <= 1080) {
-    tamanhoMaximoPilha = 18;
+    tamanhoMaximoPilha = 15;
 }
 
 function desenharArea(alturaCanvas) {
