@@ -1,3 +1,5 @@
+const alturaTela = window.innerHeight;
+
 const formPilha = document.querySelector("#formPilha");
 const btnAdd = document.querySelector("#btnAdd");
 const btnRemover = document.querySelector("#btnRemover");
@@ -5,29 +7,42 @@ const btnRemover = document.querySelector("#btnRemover");
 const corAmarelo = "#C09F28";
 
 const canvas = document.querySelector("#canva");
+canvas.width = 1320;
+canvas.height = (alturaTela - 230);
 const contextoCanva = canvas.getContext('2d');
 
+let tamanhoMaximoPilha;
 
-contextoCanva.strokeStyle = corAmarelo;
-contextoCanva.lineWidth = 4;
+// Define o tamanho máximo da pilha com base na resolução da tela
+if (alturaTela <= 768) {
+    tamanhoMaximoPilha = 8;
+} else if (alturaTela <= 900) {
+    tamanhoMaximoPilha = 14;
+} else if (alturaTela <= 1080) {
+    tamanhoMaximoPilha = 18;
+}
 
-// Borda Direita
-contextoCanva.beginPath();
-contextoCanva.moveTo(712, 492);
-contextoCanva.lineTo(712, 115);
-contextoCanva.stroke();
+function desenharArea(alturaCanvas) {
+    contextoCanva.strokeStyle = corAmarelo;
+    contextoCanva.lineWidth = 4;
+    // Borda Direita
+    contextoCanva.beginPath();
+    contextoCanva.moveTo(712, (alturaCanvas - 15));
+    contextoCanva.lineTo(712, 10);
+    contextoCanva.stroke();
 
-// Borda Esquerda
-contextoCanva.beginPath();
-contextoCanva.moveTo(608, 492);
-contextoCanva.lineTo(608, 115);
-contextoCanva.stroke();
+    // Borda Esquerda
+    contextoCanva.beginPath();
+    contextoCanva.moveTo(608, (alturaCanvas - 15));
+    contextoCanva.lineTo(608, 10);
+    contextoCanva.stroke();
 
-// Borda inferior
-contextoCanva.beginPath();
-contextoCanva.moveTo(608, 490);
-contextoCanva.lineTo(712, 490);
-contextoCanva.stroke();
+    // Borda inferior
+    contextoCanva.beginPath();
+    contextoCanva.moveTo(606, (alturaCanvas - 15));
+    contextoCanva.lineTo(714, (alturaCanvas - 15));
+    contextoCanva.stroke();
+}
 
 function desenhaQuadrado(posicaoX, posicaoY, textoEsquerda) {
     const larguraRetangulo = 80;
@@ -78,12 +93,11 @@ function desenhaQuadrado(posicaoX, posicaoY, textoEsquerda) {
 
     // Desenhar setas
     if (pilha.tamanho > 1) {
-        if (posicaoY !== 440) {
+        if (posicaoY !== canvas.height - 68) {
             desenharSeta(meioX + 20, meioY + 46, 25);
         }
     }
 }
-
 
 function desenharSeta(posicaoX, posicaoY, comprimento) {
     const larguraSeta = 8;
@@ -102,10 +116,10 @@ function desenharSeta(posicaoX, posicaoY, comprimento) {
 }
 
 function redesenharPilha(topo) {
-    contextoCanva.clearRect(610, 0, 100, 488);
-    contextoCanva.clearRect(502, 0, 100, 488);
+    contextoCanva.clearRect(610, 0, 100, canvas.height - 15);
+    contextoCanva.clearRect(502, 0, 100, canvas.height);
     let ponteiro = topo;
-    let posY = 440;
+    let posY = canvas.height - 68;
 
     const pilhaInvertida = [];
 
@@ -121,7 +135,7 @@ function redesenharPilha(topo) {
 
     if (pilhaInvertida.length > 0) {
 
-        const setaPosY = 480 - (pilhaInvertida.length - 1) * 45 - 20;
+        const setaPosY = (canvas.height - 28) - (pilhaInvertida.length - 1) * 45 - 20;
         const larguraSeta = 8;
         const comprimento = 30;
         const setaPosX = 570;
@@ -185,6 +199,8 @@ class Pilha {
     }
 }
 
+
+desenharArea(canvas.height);
 const pilha = new Pilha();
 
 formPilha.addEventListener("click", function (event) {
@@ -194,7 +210,7 @@ formPilha.addEventListener("click", function (event) {
         const inputValor = document.querySelector("#valorAdd");
         const valor = inputValor.value;
 
-        if (pilha.tamanho >= 8) {
+        if (pilha.tamanho >= tamanhoMaximoPilha) {
             alert("Pilha Cheia")
         } else if (valor > 999 || valor <= 0) {
             alert("Apenas numeros maiores que 0 e menores que 1000.");
