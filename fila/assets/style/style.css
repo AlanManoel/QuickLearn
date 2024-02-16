@@ -18,6 +18,7 @@
     flex-direction: column;
     align-items: center;
     color: #FFF;
+    justify-content: space-between;
     overflow-y: hidden;
   }
 
@@ -31,22 +32,11 @@
     font-weight: normal;
   }
 
-  main {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    height: 60vh;
-  }
-
   form {
     display: flex;
     margin-bottom: 52px;
     gap: 12px;
     border-radius: 5px;
-    justify-content: flex-end;
-    position: fixed;
-    bottom: 0;
   }
 
   button {

@@ -19,6 +19,7 @@ body {
   align-items: center;
   color: #FFF;
   overflow-y: hidden;
+  justify-content: space-between;
 }
 
 header {
@@ -31,23 +32,12 @@ header h1 {
   font-weight: normal;
 }
 
-main {
-  margin-top: 52px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  height: 100vh;
-}
-
 form {
   display: flex;
   margin-bottom: 52px;
   gap: 12px;
   border-radius: 5px;
   align-items: center;
-  position: fixed;
-  bottom: 0;
 }
 
 button {
