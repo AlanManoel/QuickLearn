@@ -13,14 +13,18 @@ const contextoCanva = canvas.getContext('2d');
 
 let tamanhoMaximoPilha;
 
+    tamanhoMaximoPilha = Math.floor((canvas.height - 20) / 45);
 // Define o tamanho máximo da pilha com base na resolução da tela
-if (alturaTela <= 768) {
-    tamanhoMaximoPilha = 8;
-} else if (alturaTela <= 900) {
-    tamanhoMaximoPilha = 11;
-} else if (alturaTela <= 1080) {
-    tamanhoMaximoPilha = 15;
-}
+// if (alturaTela <= 768) {
+//     tamanhoMaximoPilha = Math.floor((canvas.height - 20) / 45);
+//     // tamanhoMaximoPilha = 8;
+// } else if (alturaTela <= 900) {
+//     tamanhoMaximoPilha = 11;
+// } else if (alturaTela <= 1080) {
+//     tamanhoMaximoPilha = 15;
+// } else {
+//     tamanhoMaximoPilha = Math.floor((canvas.height - 20) / 45);
+// }
 
 function desenharArea(alturaCanvas) {
     contextoCanva.strokeStyle = corAmarelo;
